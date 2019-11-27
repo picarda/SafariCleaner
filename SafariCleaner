@@ -1,0 +1,42 @@
+-- Safari Cleaner by Alain Picard
+
+set appname to "Safari"
+
+if appIsRunning(appname) then
+	set started to true
+	-- Quit App
+	tell application appname to quit
+else
+	set started to false
+end if
+
+do shell script "rm -f ~/Library/Safari/history.plist"
+do shell script "rm -f ~/Library/Safari/HistoryIndex.sk"
+do shell script "rm -rf ~/Library/Safari/LocalStorage"
+do shell script "rm -rf ~/Library/Safari/Databases"
+do shell script "rm -rf ~/Library/Safari/Downloads.plist"
+do shell script "rm -rf ~/Library/Safari/AutoFillCorrections.db-wal"
+do shell script "rm -rf ~/Library/Safari/AutoFillCorrections.db"
+do shell script "rm -f ~/Library/Safari/TopSites.plist"
+do shell script "rm -f ~/Library/Safari/RecentlyClosedTabs.plist"
+do shell script "rm -f ~/Library/Safari/RecentlyClosedTabs.plist"
+do shell script "rm -f ~/Library/Safari/PasswordAuditing.plist"
+do shell script "rm -f ~/Library/Safari/LastSession.plist"
+do shell script "rm -f ~/Library/Safari/History.db"
+do shell script "rm -f ~/Library/Safari/History.db-lock"
+do shell script "rm -f ~/Library/Safari/History.db-shm"
+do shell script "rm -f ~/Library/Safari/History.db-wal"
+do shell script "rm -f ~/Library/Caches/com.apple.Safari"
+do shell script "rm -f ~/Library/Caches/com.apple.Safari.SafeBrowsing"
+do shell script "rm -rf ~/Library/Caches/com.apple.Safari/Webpage\\ Previews"
+do shell script "rm -rf ~/Library/Caches/Metadata/Safari/History"
+do shell script "rm -f ~/Library/Cookies"
+do shell script "rm -f ~/Library/SafariSafeBrowsing"
+
+if started then
+	tell application appname to activate
+end if
+
+on appIsRunning(appname)
+	tell application "System Events" to (name of processes) contains appname
+end appIsRunning
